@@ -7,6 +7,10 @@
 - Minimize Blank Template
 - TypeScript Integration
 
+## Scripts
+
+- `npm run open` - Open project in WeChat Devtools
+
 ## Usage
 
 ```bash

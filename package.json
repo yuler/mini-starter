@@ -1,6 +1,9 @@
 {
+	"type": "module",
+	"scripts": {
+		"open": "node scripts/open.js"
+	},
 	"devDependencies": {
-		"@yuler/tsconfig": "^0.2.0",
 		"miniprogram-api-typings": "^3.4.4"
 	}
 }

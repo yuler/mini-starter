@@ -1,5 +1,5 @@
-Page({
-	onLoad() {
-		console.log('[Home]: onLoad')
-	},
+import enchangePage from '../enchange-page'
+
+enchangePage({
+	onLoad() {},
 })

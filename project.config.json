@@ -3,7 +3,7 @@
 	"projectname": "template-wechat-miniprogram",
 	"description": "wechat miniprogram project config",
 	"appid": "wx6496b056188733f6",
-	"miniprogramRoot": "client",
+	"miniprogramRoot": "client/",
 	"libVersion": "2.19.4",
 	"compileType": "miniprogram",
 	"simulatorType": "wechat",

@@ -1,21 +1,24 @@
 declare interface IApp {
 	$system?: MP.SystemInfo
-	$request: typeof request
 
-	globalData: {
-		debug: boolean
-	}
+	$log: typeof $log
+	$request: typeof $request
 
-	// Goto debug page
-	gotoDebug?: () => void
+	debug: boolean
+	gloablData: any
 }
 
 App<IApp>({
+	// Store System info
 	$system: undefined,
 
-	globalData: {
-		debug: false,
-	},
+	// Helper functions
+	$log,
+	$request,
+
+	// Global state & data
+	debug: false,
+	gloablData: {},
 
 	onLaunch() {
 		/**
@@ -28,26 +31,26 @@ App<IApp>({
 			})
 			.catch(_ => {})
 	},
-
-	$request: request,
 })
+
+/**
+ * Wrap console.log with debug mode
+ */
+function $log(this: IApp, namespace: string, ...args: unknown[]) {
+	getApp<IApp>().debug && console.log(`[${namespace}]: `, ...args)
+}
 
 /**
  * Wrapper function for wx.request
  * @see https://developers.weixin.qq.com/miniprogram/dev/api/network/request/wx.request.html
- *
- * @param url - Request url
- * @param options - Request options
- * @param requestTask - RequestTask for abort or interrupt
- * @returns - Response data when request success
  */
-function request<T = any>(
+function $request<T = any>(
 	url: string,
 	options: Omit<MP.RequestOption, 'url'>,
 	requestTask?: MP.RequestTask,
 ): Promise<T> {
 	return new Promise((resolve, reject) => {
-		requestTask = wx.request<T>({
+		const _requestTask = wx.request<T>({
 			url,
 			timeout: 2000,
 			header: {
@@ -64,5 +67,6 @@ function request<T = any>(
 			fail: reject,
 			...options,
 		})
+		if (requestTask) requestTask = _requestTask
 	})
 }

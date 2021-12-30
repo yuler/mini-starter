@@ -4,8 +4,8 @@
 
 ## Features
 
-- Minimize Blank Template
 - TypeScript Integration
+- Enable [useExtendedLib](https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/app.html#useExtendedLib) weui
 
 ## Scripts
 
@@ -20,3 +20,9 @@ gh repo create --template yuler/template-wechat-miniprogram
 ## Related
 
 - [微信小程序框架](https://developers.weixin.qq.com/miniprogram/dev/framework)
+
+## TODO
+
+- [ ] Use `.env`
+- [ ] `build-npm` script
+- [ ] `preview` script

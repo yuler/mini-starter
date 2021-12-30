@@ -1,7 +1,10 @@
 {
+	"version": "0.0.0",
+	"private": true,
 	"type": "module",
 	"scripts": {
-		"open": "esmo scripts/cli-open.ts"
+		"open": "esmo scripts/cli-open.ts",
+		"build:npm": "esmo scripts/cli-build-npm.ts"
 	},
 	"devDependencies": {
 		"@types/node": "^17.0.5",

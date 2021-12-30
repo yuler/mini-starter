@@ -9,7 +9,8 @@
 
 ## Scripts
 
-- `npm run open` - Open project in WeChat Devtools
+- `npm run open` - Open project in [WeChat Devtools]
+- `npm run build:npm` - Use [WeChat Devtools CLI] build npm
 
 ## Usage
 
@@ -23,5 +24,10 @@ gh repo create --template yuler/template-wechat-miniprogram
 
 ## TODO
 
-- [ ] `build-npm` script
 - [ ] `preview` script
+- [ ] Merge `cli-*.ts` scripts to `ide-cli.ts`
+
+<!-- Links -->
+
+[WeChat Devtools]: https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html
+[WeChat Devtools CLI]: https://developers.weixin.qq.com/miniprogram/dev/devtools/cli.html

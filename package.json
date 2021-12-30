@@ -1,9 +1,13 @@
 {
 	"type": "module",
 	"scripts": {
-		"open": "node scripts/open.js"
+		"open": "esmo scripts/cli-open.ts"
 	},
 	"devDependencies": {
+		"@types/node": "^17.0.5",
+		"dotenv": "^10.0.0",
+		"esno": "^0.13.0",
+		"execa": "^6.0.0",
 		"miniprogram-api-typings": "^3.4.4"
 	}
 }

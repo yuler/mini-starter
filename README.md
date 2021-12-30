@@ -23,6 +23,5 @@ gh repo create --template yuler/template-wechat-miniprogram
 
 ## TODO
 
-- [ ] Use `.env`
 - [ ] `build-npm` script
 - [ ] `preview` script

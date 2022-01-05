@@ -9,8 +9,7 @@
 
 ## Scripts
 
-- `npm run open` - Open project in [WeChat Devtools]
-- `npm run build:npm` - Use [WeChat Devtools CLI] build npm
+- `open` & `preview` & `build:npm` is forword to [WeChat Devtools CLI](https://developers.weixin.qq.com/miniprogram/dev/devtools/cli.html)
 
 ## Usage
 
@@ -23,6 +22,9 @@ gh repo create --template yuler/template-wechat-miniprogram
 - [微信小程序框架](https://developers.weixin.qq.com/miniprogram/dev/framework)
 
 ## TODO
+
+- [ ] Integration `tailwindcss` or `windicss` or `unocss`
+- [ ] Add GitHub action run `miniprogram-ci` upload
 
 <!-- Links -->
 

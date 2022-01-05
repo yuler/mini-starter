@@ -4,6 +4,7 @@
 	"type": "module",
 	"scripts": {
 		"open": "esmo scripts/ide-cli.ts open",
+		"preview": "esmo scripts/ide-cli.ts preview",
 		"build:npm": "esmo scripts/ide-cli.ts build-npm"
 	},
 	"devDependencies": {

@@ -24,8 +24,6 @@ gh repo create --template yuler/template-wechat-miniprogram
 
 ## TODO
 
-- [ ] `preview` script
-
 <!-- Links -->
 
 [wechat devtools]: https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html

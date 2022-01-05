@@ -1,6 +1,6 @@
 interface Data {
-	$loading: false
-	$error: null | Error
+	$loading: boolean
+	$error: null | string | Error
 }
 
 interface Option {
@@ -28,9 +28,9 @@ export default function enchangePage<T = {}, U = {}>(
 
 	// Decorator onLoad
 	const originOnLoad = options.onLoad
-	const onLoad: MP.Page.ILifetime['onLoad'] = query => {
+	const onLoad: MP.Page.ILifetime['onLoad'] = function (this: any, query) {
 		$app.$log('enchangePage => onLoad', {query})
-		originOnLoad?.(query)
+		originOnLoad?.call(this, query)
 	}
 
 	options = {

@@ -3,6 +3,8 @@
 	"private": true,
 	"type": "module",
 	"scripts": {
+		"clean": "esmo scripts/clean.ts",
+		"build": "esmo scripts/build.ts",
 		"open": "esmo scripts/ide-cli.ts open",
 		"preview": "esmo scripts/ide-cli.ts preview",
 		"build:npm": "esmo scripts/ide-cli.ts build-npm"
@@ -10,8 +12,14 @@
 	"devDependencies": {
 		"@types/node": "^17.0.5",
 		"dotenv": "^10.0.0",
+		"esbuild": "^0.14.11",
 		"esno": "^0.13.0",
 		"execa": "^6.0.0",
-		"miniprogram-api-typings": "^3.4.4"
+		"fast-glob": "^3.2.10",
+		"miniprogram-api-typings": "^3.4.4",
+		"miniprogram-ci": "^1.8.0"
+	},
+	"dependencies": {
+		"mitt": "^3.0.0"
 	}
 }

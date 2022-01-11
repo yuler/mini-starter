@@ -1,3 +1,6 @@
-<view>
-    This is home page.
+<view class="container">
+    <text class="block">Example for `mp-icon` component</text>
+    <!-- Example for use weui `mp-icon` component -->
+    <mp-icon icon="add" color="black" size="{{25}}"></mp-icon>
+    <mp-icon icon="translate" color="black" size="{{25}}"></mp-icon>
 </view>

@@ -34,14 +34,14 @@ App<IApp>({
 })
 
 /**
- * Wrap console.log with debug mode
+ * Wrap `console.log` with debug mode
  */
 function $log(this: IApp, namespace: string, ...args: unknown[]) {
 	getApp<IApp>().debug && console.log(`[${namespace}]: `, ...args)
 }
 
 /**
- * Wrapper function for wx.request
+ * Wrap function for `wx.request`
  * @see https://developers.weixin.qq.com/miniprogram/dev/api/network/request/wx.request.html
  */
 function $request<T = any>(

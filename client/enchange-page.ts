@@ -24,18 +24,15 @@ type MPPageOptions<
 export default function enchangePage<T = {}, U = {}>(
 	options: MPPageOptions<T, U>,
 ) {
-	const $app = getApp<IApp>()
-
-	// Decorator onLoad
+	// Intercept `onLoad`
 	const originOnLoad = options.onLoad
 	const onLoad: MP.Page.ILifetime['onLoad'] = function (this: any, query) {
-		$app.$log('enchangePage => onLoad', {query})
+		getApp<IApp>().$log('enchangePage => onLoad', {query})
 		originOnLoad?.call(this, query)
 	}
 
 	options = {
 		...options,
-		$app,
 		data: {
 			$loading: false,
 			$error: null,

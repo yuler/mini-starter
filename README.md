@@ -9,7 +9,7 @@
 
 ## Scripts
 
-- `open` & `preview` & `build:npm` is forword to [WeChat Devtools CLI](https://developers.weixin.qq.com/miniprogram/dev/devtools/cli.html)
+- `open` & `preview` & `build:npm` is forward to [WeChat Devtools CLI](https://developers.weixin.qq.com/miniprogram/dev/devtools/cli.html)
 
 ## Usage
 

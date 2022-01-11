@@ -1,8 +1,16 @@
-declare interface IApp {
+import mitt from 'mitt'
+
+const emitter = mitt()
+
+export interface IApp {
 	$system?: MP.SystemInfo
 
 	$log: typeof $log
 	$request: typeof $request
+
+	$events: typeof emitter.all
+	$on: typeof emitter.on
+	$emit: typeof emitter.emit
 
 	debug: boolean
 	gloablData: any
@@ -15,6 +23,11 @@ App<IApp>({
 	// Helper functions
 	$log,
 	$request,
+
+	// Events
+	$events: emitter.all,
+	$on: emitter.on,
+	$emit: emitter.emit,
 
 	// Global state & data
 	debug: false,
@@ -30,6 +43,14 @@ App<IApp>({
 				this.$system = data
 			})
 			.catch(_ => {})
+
+		/**
+		 * Event emit to `home` page
+		 * @example events
+		 */
+		setInterval(() => {
+			this.$emit('app:tick', 'tick')
+		}, 1000)
 	},
 })
 

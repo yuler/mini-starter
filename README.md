@@ -4,8 +4,9 @@
 
 ## Features
 
+- Enable `style: v2` & `weui: true` ([useExtendedLib](https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/app.html#useExtendedLib)) in `app.json`
 - TypeScript Integration
-- Enable [useExtendedLib](https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/app.html#useExtendedLib) weui
+- Wrap a event emitter power by [mitt](https://github.com/developit/mitt)
 
 ## Scripts
 

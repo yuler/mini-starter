@@ -24,9 +24,11 @@ gh repo create --template yuler/template-wechat-miniprogram
 
 ## TODO
 
+- [ ] Rename `enchangePage` to `definePage`, add `$toast` & `$alert` & `$confirm` fns in `$app`
 - [ ] Integration `tailwindcss` or `windicss` or `unocss`
+- [ ] Add style lint
 - [ ] Add GitHub action run `miniprogram-ci` upload
-- [ ] Move `$app` to enchangePage, add `$toast` & `$alert` & `$confirm` fns in `$app`
+- [ ] Add eslint
 
 <!-- Links -->
 

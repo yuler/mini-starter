@@ -9,7 +9,7 @@
     "open": "tsx scripts/ide-cli.ts open",
     "preview": "tsx scripts/ide-cli.ts preview",
     "build:npm": "tsx scripts/ide-cli.ts build-npm",
-    "format": "prettier -w **/*.{ts,wxml,wxss,json,md}"
+    "format": "prettier -w \"**/*.{ts,wxml,wxss,json,md}\""
   },
   "dependencies": {
     "mitt": "^3.0.0"

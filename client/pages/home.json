@@ -1,5 +1,5 @@
 {
-	"usingComponents": {
-		"mp-icon": "weui-miniprogram/icon/icon"
-	}
+  "usingComponents": {
+    "mp-icon": "weui-miniprogram/icon/icon"
+  }
 }

@@ -5,9 +5,5 @@
 		"*.wxss": "css",
 		"*.wxml": "html",
 		"*.wxs": "javascript"
-	},
-	"windicss.sortOnSave": true,
-	"windicss.includeLanguages": {
-		"*.wxml": "html"
 	}
 }

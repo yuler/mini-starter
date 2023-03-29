@@ -13,7 +13,7 @@ export const IDE_CLI = process.env.IDE_CLI
  * Get current file path.
  */
 export function filename(importMeta: ImportMeta) {
-	return fileURLToPath(importMeta.url)
+  return fileURLToPath(importMeta.url)
 }
 
 /**
@@ -21,17 +21,17 @@ export function filename(importMeta: ImportMeta) {
  *
  */
 export function dirname(importMeta: ImportMeta) {
-	return path.dirname(fileURLToPath(importMeta.url))
+  return path.dirname(fileURLToPath(importMeta.url))
 }
 
 /**
  * Check if the file exists.
  */
 export async function exists(path: string): Promise<boolean> {
-	try {
-		await fs.access(path)
-	} catch {
-		return false
-	}
-	return true
+  try {
+    await fs.access(path)
+  } catch {
+    return false
+  }
+  return true
 }

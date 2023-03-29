@@ -1,4 +1,4 @@
-# Template WeChat MiniProgram
+# WeChat MiniProgram Starter
 
 > This is a template for WeChat MiniProgram.
 
@@ -15,7 +15,7 @@
 ## Usage
 
 ```bash
-gh repo create --template yuler/template-wechat-miniprogram
+gh repo create --template yuler/mini-starter
 ```
 
 ## Related
@@ -25,7 +25,7 @@ gh repo create --template yuler/template-wechat-miniprogram
 ## TODO
 
 - [ ] Rename `enchangePage` to `definePage`, add `$toast` & `$alert` & `$confirm` fns in `$app`
-- [ ] Integration `tailwindcss` or `windicss` or `unocss`
+- [ ] Integration `tailwindcss`
 - [ ] Add style lint
 - [ ] Add GitHub action run `miniprogram-ci` upload
 - [ ] Add eslint

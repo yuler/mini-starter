@@ -4,18 +4,20 @@
   "type": "module",
   "packageManager": "pnpm@7.27.0",
   "scripts": {
+    "dev": "tsx scripts/dev.ts",
     "clean": "tsx scripts/clean.ts",
     "build": "tsx scripts/build.ts",
     "open": "tsx scripts/ide-cli.ts open",
     "preview": "tsx scripts/ide-cli.ts preview",
     "build:npm": "tsx scripts/ide-cli.ts build-npm",
-    "format": "prettier -w \"**/*.{ts,wxml,wxss,json,md}\""
+    "format": "prettier -w \"**/*.{ts,js,wxml,wxss,wxs,json,md}\""
   },
   "dependencies": {
     "mitt": "^3.0.0"
   },
   "devDependencies": {
     "@types/node": "^17.0.5",
+    "@unocss/cli": "^0.50.6",
     "dotenv": "^10.0.0",
     "esbuild": "^0.14.11",
     "execa": "^6.0.0",
@@ -23,6 +25,7 @@
     "miniprogram-api-typings": "^3.4.4",
     "miniprogram-ci": "^1.8.0",
     "prettier": "^2.8.7",
-    "tsx": "^3.12.6"
+    "tsx": "^3.12.6",
+    "unocss": "^0.50.6"
   }
 }

@@ -5,7 +5,8 @@
 ## Features
 
 - Enable `style: v2` & `weui: true` ([useExtendedLib](https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/app.html#useExtendedLib)) in `app.json`
-- TypeScript Integration
+- Integration TypeScript
+- Integration UnoCSS
 - Wrap a event emitter power by [mitt](https://github.com/developit/mitt)
 
 ## Scripts
@@ -25,7 +26,6 @@ gh repo create --template yuler/mini-starter
 ## TODO
 
 - [ ] Rename `enchangePage` to `definePage`, add `$toast` & `$alert` & `$confirm` fns in `$app`
-- [ ] Integration `tailwindcss`
 - [ ] Add style lint
 - [ ] Add GitHub action run `miniprogram-ci` upload
 - [ ] Add eslint

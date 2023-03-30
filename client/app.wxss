@@ -1,3 +1,9 @@
-.block {
-  display: block;
+@import './unocss.wxss';
+
+view {
+  box-sizing: border-box;
+}
+
+page {
+  background: rgba(243, 244, 246);
 }

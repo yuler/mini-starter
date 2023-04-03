@@ -1,12 +1,16 @@
 import mitt from 'mitt'
 
+import {TABS} from './constants'
+import {api as $api} from './api'
+
 const emitter = mitt()
 
 export interface IApp {
   $system?: MP.SystemInfo
 
   $log: typeof $log
-  $request: typeof $request
+  $api: typeof $api
+  $goto: typeof $goto
 
   $events: typeof emitter.all
   $on: typeof emitter.on
@@ -22,7 +26,8 @@ App<IApp>({
 
   // Helper functions
   $log,
-  $request,
+  $api,
+  $goto,
 
   // Events
   $events: emitter.all,
@@ -62,32 +67,13 @@ function $log(this: IApp, namespace: string, ...args: unknown[]) {
 }
 
 /**
- * Wrap function for `wx.request`
- * @see https://developers.weixin.qq.com/miniprogram/dev/api/network/request/wx.request.html
+ * Wrap for `wx.navigateTo`
+ * @param url The page path
  */
-function $request<T = any>(
-  url: string,
-  options: Omit<MP.RequestOption, 'url'>,
-  requestTask?: MP.RequestTask,
-): Promise<T> {
-  return new Promise((resolve, reject) => {
-    const _requestTask = wx.request<T>({
-      url,
-      timeout: 2000,
-      header: {
-        // TODO: replace to package.version
-        version: '0.0.0',
-      },
-      success(result) {
-        // Success
-        if (result.statusCode >= 200 && result.statusCode < 300) {
-          resolve(result.data)
-        }
-        reject(result)
-      },
-      fail: reject,
-      ...options,
-    })
-    if (requestTask) requestTask = _requestTask
-  })
+function $goto(url: string) {
+  if (TABS.includes(url)) {
+    wx.switchTab({url})
+    return
+  }
+  wx.navigateTo({url})
 }

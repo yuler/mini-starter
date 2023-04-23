@@ -9,13 +9,13 @@ import esbuild from 'esbuild'
 import { API_ROOT, packageJSON, projectJSON, root } from './constants'
 import { exists } from './utils'
 
-const srcDir = projectJSON.srcMiniprogramRoot
-const distDir = projectJSON.miniprogramRoot
+const srcDir = path.resolve(root, projectJSON.srcMiniprogramRoot)
+const distDir = path.resolve(root, projectJSON.miniprogramRoot)
 
 buildNpm()
 buildTS()
-buildWxss()
 buildCopy()
+buildWxss()
 
 // buildNpm
 export async function buildNpm() {
@@ -35,14 +35,15 @@ export async function buildNpm() {
 
 // ESBuild
 export function buildTS(
-  paths: string[] = glob.sync(`${srcDir}**/*.ts`, {
-    cwd: root,
-  }),
+  files: string[] = glob
+    .sync(`**/*.ts`, {
+      cwd: srcDir,
+    })
+    .map(file => path.resolve(srcDir, file)),
 ) {
   esbuild.build({
-    entryPoints: paths,
-    outdir: `./${distDir}/`,
-    outbase: '',
+    entryPoints: files,
+    outdir: distDir,
     define: {
       __appId: JSON.stringify(projectJSON.appid),
       __version: JSON.stringify(packageJSON.version),
@@ -53,24 +54,33 @@ export function buildTS(
 
 // Copy files w/o `.ts` extension
 export async function buildCopy(
-  paths: string[] = glob.sync([`**/*`, '!**/*.ts'], {
-    cwd: srcDir,
-  }),
+  files: string[] = glob
+    .sync([`**/*`, `!**/*.ts`], {
+      cwd: srcDir,
+    })
+    .map(file => path.resolve(srcDir, file)),
 ) {
-  for (const file of paths) {
-    const dir = path.resolve(distDir, path.dirname(file))
+  for (const file of files) {
+    const dir = path.dirname(file)
     if (!(await exists(dir))) {
       await fs.mkdir(dir, { recursive: true })
     }
-    await execa('cp', [`${srcDir}${file}`, `${distDir}/${path.dirname(file)}`])
+    await execa('cp', [
+      file,
+      path.resolve(distDir, path.relative(srcDir, file)),
+    ])
   }
 }
 
 // Unocss
 export async function buildWxss() {
-  execa('unocss', [
+  await execa('unocss', [
+    ...glob.sync([`**/*.wxml`], {
+      cwd: srcDir,
+      absolute: true,
+    }),
     `${srcDir}**/*.wxml`,
     '--out-file',
-    `${distDir}unocss.wxss`,
-  ]).stdout?.pipe(process.stdout)
+    path.resolve(distDir, 'unocss.wxss'),
+  ]).pipeStdout?.(process.stdout)
 }

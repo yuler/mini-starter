@@ -55,7 +55,8 @@
     "showES6CompileOption": false,
     "ignoreUploadUnusedFiles": true,
     "useStaticServer": true,
-    "useCompilerPlugins": false
+    "useCompilerPlugins": false,
+    "condition": false
   },
   "condition": {},
   "editorSetting": {

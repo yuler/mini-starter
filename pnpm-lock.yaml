@@ -34,7 +34,7 @@ devDependencies:
   tiny-invariant: 1.3.1
   tsx: 3.12.6
   typescript: 5.0.4
-  unocss: 0.51.6
+  unocss: 0.51.6_postcss@8.4.23+vite@4.3.1
 
 packages:
 
@@ -2072,12 +2072,12 @@ packages:
     resolution: {integrity: sha512-BsAaKhB+7X+H4GnSjGhJG9Qi8Tw+inU9nJDwmD5CgOmBLEI6ArdhikpLX7DjbjDRDTbqZzU2LSQNZg8WGPiSZQ==}
     dev: true
 
-  /@unocss/astro/0.51.6:
+  /@unocss/astro/0.51.6_vite@4.3.1:
     resolution: {integrity: sha512-vfj7aj4idcF9KO2gbpVMe2b6rshLj54udK+UPsJsqG9o1mvcO4oKVMTD2S8rnpufwMzbYvoPCWA6/cFs8J875Q==}
     dependencies:
       '@unocss/core': 0.51.6
       '@unocss/reset': 0.51.6
-      '@unocss/vite': 0.51.6
+      '@unocss/vite': 0.51.6_vite@4.3.1
     transitivePeerDependencies:
       - rollup
       - vite
@@ -2130,9 +2130,11 @@ packages:
       sirv: 2.0.2
     dev: true
 
-  /@unocss/postcss/0.51.6:
+  /@unocss/postcss/0.51.6_postcss@8.4.23:
     resolution: {integrity: sha512-qxEye8hfusuhcieSRZolaTq3MMCiPRYGuCDErPtyEX63c5GrmpMfZEEsmiDN4kdr4MqrM09wJHPdfuuh+3kKow==}
     engines: {node: '>=14'}
+    peerDependencies:
+      postcss: ^8.4.21
     dependencies:
       '@unocss/config': 0.51.6
       '@unocss/core': 0.51.6
@@ -2239,7 +2241,7 @@ packages:
       '@unocss/core': 0.51.6
     dev: true
 
-  /@unocss/vite/0.51.6:
+  /@unocss/vite/0.51.6_vite@4.3.1:
     resolution: {integrity: sha512-8CMs1Ggaisu7oIARftybAj218plRE3ETyCqcx+Ah6hkftO+g7ltzfiN8MAGTjzxZsIr+UevWZ3/YtPnLVTgtqA==}
     peerDependencies:
       vite: ^2.9.0 || ^3.0.0-0 || ^4.0.0
@@ -2254,6 +2256,7 @@ packages:
       chokidar: 3.5.3
       fast-glob: 3.2.12
       magic-string: 0.30.0
+      vite: 4.3.1_@types+node@18.16.0
     transitivePeerDependencies:
       - rollup
     dev: true
@@ -2280,8 +2283,10 @@ packages:
     hasBin: true
     dev: true
 
-  /ajv-formats/1.6.1:
+  /ajv-formats/1.6.1_ajv@7.2.4:
     resolution: {integrity: sha512-4CjkH20If1lhR5CGtqkrVg3bbOtFEG80X9v6jDOIUhbzzbB+UzPBGy8GQhUNVZ0yvMHdMpawCOcy5ydGMsagGQ==}
+    peerDependencies:
+      ajv: ^7.0.0
     peerDependenciesMeta:
       ajv:
         optional: true
@@ -3286,7 +3291,7 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       ajv: 7.2.4
-      ajv-formats: 1.6.1
+      ajv-formats: 1.6.1_ajv@7.2.4
       atomically: 1.7.0
       debounce-fn: 4.0.0
       dot-prop: 6.0.1
@@ -5432,6 +5437,14 @@ packages:
       glob: 7.2.3
     dev: true
 
+  /rollup/3.20.7:
+    resolution: {integrity: sha512-P7E2zezKSLhWnTz46XxjSmInrbOCiul1yf+kJccMxT56vxjHwCbDfoLbiqFgu+WQoo9ij2PkraYaBstgB2prBA==}
+    engines: {node: '>=14.18.0', npm: '>=8.0.0'}
+    hasBin: true
+    optionalDependencies:
+      fsevents: 2.3.2
+    dev: true
+
   /run-parallel/1.2.0:
     resolution: {integrity: sha512-5l4VyZR86LZ/lDxZTR6jqL8AFE2S0IFLMP26AbjsLVADxHdhB/c0GUsH+y39UfCi3dzz8OlQuPmnaJOMoDHQBA==}
     dependencies:
@@ -5828,7 +5841,7 @@ packages:
     engines: {node: '>= 4.0.0'}
     dev: true
 
-  /unocss/0.51.6:
+  /unocss/0.51.6_postcss@8.4.23+vite@4.3.1:
     resolution: {integrity: sha512-Xvb7seX2Hm7yEXMa5R6f9FzXzbwnlrmZV1Q7EK801cELaJEZ7gObpOVIifzl5+qLdEs0F8b87nN037erH6PF+w==}
     engines: {node: '>=14'}
     peerDependencies:
@@ -5837,11 +5850,11 @@ packages:
       '@unocss/webpack':
         optional: true
     dependencies:
-      '@unocss/astro': 0.51.6
+      '@unocss/astro': 0.51.6_vite@4.3.1
       '@unocss/cli': 0.51.6
       '@unocss/core': 0.51.6
       '@unocss/extractor-arbitrary-variants': 0.51.6
-      '@unocss/postcss': 0.51.6
+      '@unocss/postcss': 0.51.6_postcss@8.4.23
       '@unocss/preset-attributify': 0.51.6
       '@unocss/preset-icons': 0.51.6
       '@unocss/preset-mini': 0.51.6
@@ -5856,8 +5869,9 @@ packages:
       '@unocss/transformer-compile-class': 0.51.6
       '@unocss/transformer-directives': 0.51.6
       '@unocss/transformer-variant-group': 0.51.6
-      '@unocss/vite': 0.51.6
+      '@unocss/vite': 0.51.6_vite@4.3.1
     transitivePeerDependencies:
+      - postcss
       - rollup
       - supports-color
       - vite
@@ -5914,6 +5928,39 @@ packages:
       assert-plus: 1.0.0
       core-util-is: 1.0.2
       extsprintf: 1.3.0
+    dev: true
+
+  /vite/4.3.1_@types+node@18.16.0:
+    resolution: {integrity: sha512-EPmfPLAI79Z/RofuMvkIS0Yr091T2ReUoXQqc5ppBX/sjFRhHKiPPF/R46cTdoci/XgeQpB23diiJxq5w30vdg==}
+    engines: {node: ^14.18.0 || >=16.0.0}
+    hasBin: true
+    peerDependencies:
+      '@types/node': '>= 14'
+      less: '*'
+      sass: '*'
+      stylus: '*'
+      sugarss: '*'
+      terser: ^5.4.0
+    peerDependenciesMeta:
+      '@types/node':
+        optional: true
+      less:
+        optional: true
+      sass:
+        optional: true
+      stylus:
+        optional: true
+      sugarss:
+        optional: true
+      terser:
+        optional: true
+    dependencies:
+      '@types/node': 18.16.0
+      esbuild: 0.17.18
+      postcss: 8.4.23
+      rollup: 3.20.7
+    optionalDependencies:
+      fsevents: 2.3.2
     dev: true
 
   /which-module/2.0.1:

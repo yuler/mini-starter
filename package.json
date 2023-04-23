@@ -4,12 +4,12 @@
   "type": "module",
   "packageManager": "pnpm@7.32.2",
   "scripts": {
-    "ide:open": "ts-node --esm scripts/ide-cli.ts open",
-    "ide:preview": "ts-node --esm scripts/ide-cli.ts preview",
-    "ide:npm": "ts-node --esm scripts/ide-cli.ts build-npm",
-    "dev": "ts-node --esm scripts/dev.ts",
-    "build": "ts-node --esm scripts/build.ts",
-    "upload": "ts-node --esm scripts/upload.ts",
+    "ide:open": "tsx scripts/ide-cli.ts open",
+    "ide:preview": "tsx scripts/ide-cli.ts preview",
+    "ide:npm": "tsx scripts/ide-cli.ts build-npm",
+    "dev": "tsx scripts/dev.ts",
+    "build": "tsx scripts/build.ts",
+    "upload": "tsx scripts/upload.ts",
     "clean": "rm -rf dist",
     "format": "prettier -w \"**/*.{ts,js,wxml,wxss,wxs,json,md}\""
   },
@@ -28,7 +28,7 @@
     "miniprogram-ci": "^1.9.5",
     "semver": "^7.5.0",
     "tiny-invariant": "^1.3.1",
-    "ts-node": "^10.9.1",
+    "tsx": "^3.12.6",
     "typescript": "^5.0.4",
     "unocss": "^0.51.6"
   }

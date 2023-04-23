@@ -1,17 +1,21 @@
 # WeChat MiniProgram Starter
 
-> This is a template for WeChat MiniProgram.
+> This is a template for [WeChat MiniProgram](https://developers.weixin.qq.com/miniprogram/dev/framework/).
 
 ## Features
 
-- Enable `style: v2` & `weui: true` ([useExtendedLib](https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/app.html#useExtendedLib)) in `app.json`
-- Integration TypeScript
-- Integration UnoCSS
-- Wrap a event emitter power by [mitt](https://github.com/developit/mitt)
+- 🚀 Enable `style: v2` & `weui: true` ([useExtendedLib](https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/app.html#useExtendedLib)) in `app.json`
+- 💪 Integration TypeScript
+- 🎨 Integration UnoCSS
+- 🛠️ Build System with [scripts](./scripts/)
+- 📣 Wrap a event emitter power by [mitt](https://github.com/developit/mitt)
 
 ## Scripts
 
-- `open` & `preview` & `build:npm` is forward to [WeChat Devtools CLI](https://developers.weixin.qq.com/miniprogram/dev/devtools/cli.html)
+- `ide:*` forward to [WeChat Devtools CLI](https://developers.weixin.qq.com/miniprogram/dev/devtools/cli.html)
+- `build` compiles the source code to the `dist` directory
+- `dev` runs with watch mode
+- `upload` uploads the code
 
 ## Usage
 
@@ -19,18 +23,9 @@
 gh repo create --template yuler/mini-starter
 ```
 
+- Change the `appid` in [project.config.json](./project.config.json)
+- Download `private.${appid}.key` file from [Weixin Official Accounts Platform](https://mp.weixin.qq.com/wxamp/devprofile/get_profile)
+
 ## Related
 
 - [微信小程序框架](https://developers.weixin.qq.com/miniprogram/dev/framework)
-
-## TODO
-
-- [ ] Rename `enchangePage` to `definePage`, add `$toast` & `$alert` & `$confirm` fns in `$app`
-- [ ] Add style lint
-- [ ] Add GitHub action run `miniprogram-ci` upload
-- [ ] Add eslint
-
-<!-- Links -->
-
-[wechat devtools]: https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html
-[wechat devtools cli]: https://developers.weixin.qq.com/miniprogram/dev/devtools/cli.html

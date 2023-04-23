@@ -1,34 +1,48 @@
-import fs from 'node:fs/promises'
 import path from 'node:path'
+
+import chokidar from 'chokidar'
 import glob from 'fast-glob'
+import { projectJSON, root } from './constants'
+import { buildCopy, buildTS, buildWxss } from './build'
 import { execa } from 'execa'
-import { dirname } from './utils.js'
 
-// Paths
-const __dirname = dirname(import.meta)
-const root = path.resolve(__dirname, '..')
+const srcDir = path.resolve(root, projectJSON.srcMiniprogramRoot)
 
-let prevStatus = ''
-setInterval(async () => {
-  const watchFiles = glob.sync(
-    ['src/**/*.{ts,wxml,wxss}', '!src/unocss.wxss'],
-    {
-      cwd: root,
+// Build first, then watch
+execa('npm', ['run', 'build'], { cwd: root }).stdout?.pipe(process.stdout)
+
+// Watch `.ts`
+chokidar
+  .watch(
+    glob.sync([`**/*.ts`], {
+      cwd: srcDir,
       absolute: true,
-    },
+    }),
   )
-  const stats = await stat(watchFiles)
-  if (prevStatus === stats) return
-  // Run build
-  execa('npm', ['run', 'build'], { cwd: root }).stdout?.pipe(process.stdout)
-  prevStatus = stats
-}, 500)
+  .on('change', path => {
+    buildTS([path])
+  })
 
-async function stat(files: string[]) {
-  let result = ''
-  for (const file of files) {
-    const stats = await fs.stat(file)
-    result += stats.mtime.getTime().toString(36)
-  }
-  return result
-}
+// Watch `.wxss`
+chokidar
+  .watch(
+    glob.sync([`**/*.wxml`], {
+      cwd: srcDir,
+      absolute: true,
+    }),
+  )
+  .on('change', _ => {
+    buildWxss()
+  })
+
+// Watch copy files
+chokidar
+  .watch(
+    glob.sync([`**/*`, `!**/*.ts`], {
+      cwd: srcDir,
+      absolute: true,
+    }),
+  )
+  .on('change', path => {
+    buildCopy([path])
+  })

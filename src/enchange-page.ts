@@ -1,3 +1,5 @@
+import { IApp } from './app'
+
 interface Data {
   $loading: boolean
   $error: null | string | Error
@@ -21,13 +23,14 @@ type MPPageOptions<
   }) &
   ThisType<MP.Page.Instance<TData & Data, TCustom & Option>>
 
-export default function enchangePage<T = {}, U = {}>(
-  options: MPPageOptions<T, U>,
-) {
+export default function enchangePage<
+  T extends MP.Page.DataOption,
+  U extends MP.Page.CustomOption,
+>(options: MPPageOptions<T, U>) {
   // Intercept `onLoad`
   const originOnLoad = options.onLoad
   const onLoad: MP.Page.ILifetime['onLoad'] = function (this: any, query) {
-    getApp<IApp>().$log('enchangePage => onLoad', {query})
+    getApp<IApp>().$log('enchangePage => onLoad', { query })
     originOnLoad?.call(this, query)
   }
 

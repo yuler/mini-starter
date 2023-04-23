@@ -1,7 +1,7 @@
 import mitt from 'mitt'
 
-import {TABS} from './constants'
-import {api as $api} from './api'
+import { TABS } from './constants'
+import { api as $api } from './api'
 
 const emitter = mitt()
 
@@ -72,8 +72,8 @@ function $log(this: IApp, namespace: string, ...args: unknown[]) {
  */
 function $goto(url: string) {
   if (TABS.includes(url)) {
-    wx.switchTab({url})
+    wx.switchTab({ url })
     return
   }
-  wx.navigateTo({url})
+  wx.navigateTo({ url })
 }

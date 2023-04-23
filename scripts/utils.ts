@@ -3,9 +3,12 @@ import { fileURLToPath } from 'node:url'
 import fs from 'node:fs/promises'
 
 import { config } from 'dotenv'
+import invariant from 'tiny-invariant'
 
 // Load `.env` file & export env variables
 config()
+invariant(process.env.IDE_CLI, 'Please set `IDE_CLI`')
+invariant(process.env.API_ROOT, 'Please set `API_ROOT`')
 export const IDE_CLI = process.env.IDE_CLI
 export const API_ROOT = process.env.API_ROOT
 

@@ -2,30 +2,33 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
-  "packageManager": "pnpm@7.27.0",
+  "packageManager": "pnpm@7.32.2",
   "scripts": {
-    "dev": "tsx scripts/dev.ts",
-    "clean": "tsx scripts/clean.ts",
-    "build": "tsx scripts/build.ts",
-    "open": "tsx scripts/ide-cli.ts open",
-    "preview": "tsx scripts/ide-cli.ts preview",
-    "build:npm": "tsx scripts/ide-cli.ts build-npm",
+    "ide:open": "ts-node --esm scripts/ide-cli.ts open",
+    "ide:preview": "ts-node --esm scripts/ide-cli.ts preview",
+    "ide:npm": "ts-node --esm scripts/ide-cli.ts build-npm",
+    "dev": "ts-node --esm scripts/dev.ts",
+    "build": "ts-node --esm scripts/build.ts",
+    "upload": "ts-node --esm scripts/upload.ts",
+    "clean": "rm -rf dist",
     "format": "prettier -w \"**/*.{ts,js,wxml,wxss,wxs,json,md}\""
   },
   "dependencies": {
     "mitt": "^3.0.0"
   },
   "devDependencies": {
-    "@types/node": "^17.0.5",
-    "@unocss/cli": "^0.50.6",
-    "dotenv": "^10.0.0",
-    "esbuild": "^0.14.11",
-    "execa": "^6.0.0",
-    "fast-glob": "^3.2.10",
-    "miniprogram-api-typings": "^3.4.4",
-    "miniprogram-ci": "^1.8.0",
-    "prettier": "^2.8.7",
-    "tsx": "^3.12.6",
-    "unocss": "^0.50.6"
+    "@types/bytes": "^3.1.1",
+    "@types/node": "^18.16.0",
+    "bytes": "^3.1.2",
+    "dotenv": "^16.0.3",
+    "esbuild": "^0.17.18",
+    "execa": "^7.1.1",
+    "fast-glob": "^3.2.12",
+    "miniprogram-api-typings": "^3.9.1",
+    "miniprogram-ci": "^1.9.5",
+    "semver": "^7.5.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.4",
+    "unocss": "^0.51.6"
   }
 }

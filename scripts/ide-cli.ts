@@ -3,8 +3,8 @@
  * @see https://developers.weixin.qq.com/miniprogram/dev/devtools/cli.html
  */
 import path from 'node:path'
-import {execa} from 'execa'
-import {IDE_CLI, dirname} from './utils'
+import { execa } from 'execa'
+import { IDE_CLI, dirname } from './utils.js'
 
 const __dirname = dirname(import.meta)
 const root = path.resolve(__dirname, '..')

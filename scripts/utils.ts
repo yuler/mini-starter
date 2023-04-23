@@ -1,13 +1,13 @@
 import path from 'node:path'
-import {fileURLToPath} from 'node:url'
+import { fileURLToPath } from 'node:url'
 import fs from 'node:fs/promises'
 
-import {config} from 'dotenv'
+import { config } from 'dotenv'
 
-// Load `.env` file
+// Load `.env` file & export env variables
 config()
-
 export const IDE_CLI = process.env.IDE_CLI
+export const API_ROOT = process.env.API_ROOT
 
 /**
  * Get current file path.

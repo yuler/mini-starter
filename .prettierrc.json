@@ -6,7 +6,6 @@
   "useTabs": false,
   "tabWidth": 2,
   "arrowParens": "avoid",
-  "bracketSpacing": false,
   "overrides": [
     {
       "files": ["*.wxml"],

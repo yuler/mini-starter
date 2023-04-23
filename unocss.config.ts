@@ -1,7 +1,7 @@
-import {Preset, defineConfig, presetUno} from 'unocss'
+import { Preset, defineConfig, presetUno } from 'unocss'
 
 export default defineConfig({
-  presets: [presetUno({preflight: false}), presetRemTorpx()],
+  presets: [presetUno({ preflight: false }), presetRemTorpx()],
   preflights: [],
   shortcuts: [],
   blocklist: ['container'],
@@ -9,22 +9,17 @@ export default defineConfig({
 })
 
 // https://unocss.dev/config/presets
+const remRE = /(-?[\.\d]+)rem/g
 function presetRemTorpx(): Preset {
-  const remRE = /(-?[\.\d]+)rem/g
-
   return {
     name: 'rem-to-rpx',
     postprocess: util => {
       util.entries.forEach(i => {
         const value = i[1]
         if (value && typeof value === 'string' && remRE.test(value)) {
-          i[1] = rem2rpx(value)
+          i[1] = value.replace(remRE, (_, p1) => `${p1 * 32}rpx`)
         }
       })
     },
   }
-}
-
-function rem2rpx(value: string) {
-  return `${+value.slice(0, -3) * 16 * 2}rpx`
 }

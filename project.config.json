@@ -1,14 +1,16 @@
 {
   "_": "https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html",
-  "projectname": "template-wechat-miniprogram",
-  "description": "wechat miniprogram project config",
-  "appid": "wx6496b056188733f6",
-  "miniprogramRoot": "client/",
-  "libVersion": "2.19.4",
+  "projectname": "mini-starter",
+  "description": "mini-starter",
+  "appid": "wxda5fb4f5808e2104",
+  "miniprogramRoot": "dist/",
+  "srcMiniprogramRoot": "src/",
+  "libVersion": "2.30.0",
   "compileType": "miniprogram",
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
   "packOptions": {
+    "include": [],
     "ignore": []
   },
   "setting": {
@@ -35,23 +37,30 @@
     "useApiHostProcess": true,
     "babelSetting": {
       "ignore": [],
-      "disablePlugins": []
+      "disablePlugins": [],
+      "outputPath": ""
     },
-    "enableEngineNative": false,
     "useIsolateContext": false,
     "userConfirmedBundleSwitch": false,
     "packNpmManually": true,
     "packNpmRelationList": [
       {
         "packageJsonPath": "./package.json",
-        "miniprogramNpmDistDir": "./client/"
+        "miniprogramNpmDistDir": "./dist/"
       }
     ],
     "minifyWXSS": true,
     "disableUseStrict": false,
+    "minifyWXML": true,
     "showES6CompileOption": false,
-    "useCompilerPlugins": ["typescript"],
-    "minifyWXML": true
+    "ignoreUploadUnusedFiles": true,
+    "useStaticServer": true,
+    "useCompilerPlugins": false
   },
-  "condition": {}
+  "condition": {},
+  "editorSetting": {
+    "tabIndent": "insertSpaces",
+    "tabSize": 2
+  },
+  "cloudfunctionTemplateRoot": "cloudfunctionTemplate/"
 }

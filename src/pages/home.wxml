@@ -6,7 +6,7 @@
     <mp-icon icon="translate" color="black" size="{{25}}"></mp-icon>
   </view>
 
-  <view class="block bg-black">
+  <view class="block bg-black text-white">
     <text>{{time}}</text>
   </view>
 </view>

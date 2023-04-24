@@ -61,14 +61,12 @@ export async function buildCopy(
     .map(file => path.resolve(srcDir, file)),
 ) {
   for (const file of files) {
-    const dir = path.dirname(file)
+    const dist = path.resolve(distDir, path.relative(srcDir, file))
+    const dir = path.dirname(dist)
     if (!(await exists(dir))) {
       await fs.mkdir(dir, { recursive: true })
     }
-    await execa('cp', [
-      file,
-      path.resolve(distDir, path.relative(srcDir, file)),
-    ])
+    await execa('cp', [file, dist])
   }
 }
 

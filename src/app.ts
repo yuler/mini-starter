@@ -7,6 +7,10 @@ const emitter = mitt()
 
 export interface IApp {
   $system?: MP.SystemInfo
+  $state: {
+    retryLogin: number
+    retryLoginMax: number
+  }
 
   $log: typeof $log
   $api: typeof $api
@@ -23,6 +27,10 @@ export interface IApp {
 App<IApp>({
   // Store System info
   $system: undefined,
+  $state: {
+    retryLogin: 1,
+    retryLoginMax: 3,
+  },
 
   // Helper functions
   $log,

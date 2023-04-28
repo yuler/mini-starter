@@ -29,8 +29,42 @@ export default function enchangePage<
 >(options: MPPageOptions<T, U>) {
   // Intercept `onLoad`
   const originOnLoad = options.onLoad
-  const onLoad: MP.Page.ILifetime['onLoad'] = function (this: any, query) {
-    getApp<IApp>().$log('enchangePage => onLoad', { query })
+  const onLoad: MP.Page.ILifetime['onLoad'] = async function (
+    this: any,
+    query,
+  ) {
+    const $app = getApp<IApp>()
+    $app.$log('enchangePage => onLoad', { query })
+
+    // TODO: Login by wx.login
+    // if (!wx.getStorageSync('TOKEN')) {
+    //   await (async function loginWithRetry() {
+    //     try {
+    //       const $app = getApp<IApp>()
+    //       const { code } = await wx.login()
+    //       const { token } = await $app.$api<{ token: string }>({
+    //         url: 'login',
+    //         method: 'POST',
+    //         data: {
+    //           code,
+    //         },
+    //       })
+    //       wx.setStorageSync('TOKEN', token)
+    //     } catch (error) {
+    //       console.log(error)
+    //       if (
+    //         error === 401 &&
+    //         $app.$state.retryLogin < $app.$state.retryLoginMax
+    //       ) {
+    //         $app.$state.retryLogin++
+    //         await loginWithRetry()
+    //       } else {
+    //         console.log(error)
+    //       }
+    //     }
+    //   })()
+    // }
+
     originOnLoad?.call(this, query)
   }
 

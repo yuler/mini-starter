@@ -4,14 +4,14 @@
   "type": "module",
   "packageManager": "pnpm@7.32.2",
   "scripts": {
-    "ide:open": "tsx scripts/ide-cli.ts open",
-    "ide:preview": "tsx scripts/ide-cli.ts preview",
-    "ide:npm": "tsx scripts/ide-cli.ts build-npm",
     "dev": "tsx scripts/dev.ts",
     "build": "tsx scripts/build.ts",
     "upload": "tsx scripts/upload.ts",
     "clean": "rm -rf dist",
-    "format": "prettier -w \"**/*.{ts,js,wxml,wxss,wxs,json,md}\""
+    "format": "prettier -w \"**/*.{ts,js,wxml,wxss,wxs,json,md}\"",
+    "ide:open": "tsx scripts/ide-cli.ts open",
+    "ide:preview": "tsx scripts/ide-cli.ts preview",
+    "ide:npm": "tsx scripts/ide-cli.ts build-npm"
   },
   "dependencies": {
     "mitt": "^3.0.0"

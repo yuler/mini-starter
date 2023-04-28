@@ -44,6 +44,7 @@ export function buildTS(
   esbuild.build({
     entryPoints: files,
     outdir: distDir,
+    outbase: srcDir,
     define: {
       __appId: JSON.stringify(projectJSON.appid),
       __version: JSON.stringify(packageJSON.version),

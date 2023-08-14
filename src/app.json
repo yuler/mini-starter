@@ -10,5 +10,8 @@
   "sitemapLocation": "sitemap.json",
   "useExtendedLib": {
     "weui": true
+  },
+  "usingComponents": {
+    "app-icon": "/components/app-icon/app-icon"
   }
 }

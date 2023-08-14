@@ -15,15 +15,18 @@ Component({
       type: String,
       value: '',
     },
-    size: {
-      type: String,
-      value: 'medium',
-    },
+  },
+
+  data: {
+    markImageValue: '',
+    defaultSize: false,
   },
 
   lifetimes: {
     async attached() {
+      const { className } = this.data
       this.setData({
+        defaultSize: !className.includes('w-') && !className.includes('h-'),
         markImageValue: `url(data:image/svg+xml,${encodeURIComponent(
           icons[this.data.name],
         )})`,

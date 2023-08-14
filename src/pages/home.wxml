@@ -7,6 +7,8 @@
   <view class="block py-4 flex gap-4">
     <mp-icon icon="add" color="black" size="{{25}}"></mp-icon>
     <mp-icon icon="translate" color="black" size="{{25}}"></mp-icon>
+
+    <app-icon name="x" color="black" size="{{25}}"></app-icon>
   </view>
 
   <view class="block py-4">

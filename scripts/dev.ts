@@ -38,7 +38,7 @@ chokidar
 // Watch copy files
 chokidar
   .watch(
-    glob.sync([`**/*`, `!**/*.ts`], {
+    glob.sync([`**/*`, `!**/*.ts`, '!**/*.wxml'], {
       cwd: srcDir,
       absolute: true,
     }),

@@ -2,6 +2,7 @@
 import MP = WechatMiniprogram
 
 // define global variables
-declare const __appId: string
-declare const __version: string
-declare const __apiRoot: string
+declare const __APP_ID__: string
+declare const __APP_VERSION__: string
+declare const __APP_API_ROOT__: string
+declare const __BUILD_TIME__: string

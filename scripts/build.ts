@@ -5,8 +5,9 @@ import glob from 'fast-glob'
 import { execa } from 'execa'
 import ci from 'miniprogram-ci'
 import esbuild from 'esbuild'
+import { format } from 'date-fns'
 
-import { API_ROOT, packageJSON, projectJSON, root } from './constants'
+import { APP_API_ROOT, packageJSON, projectJSON, root } from './constants'
 import { exists } from './utils'
 
 const srcDir = path.resolve(root, projectJSON.srcMiniprogramRoot)
@@ -46,9 +47,10 @@ export function buildTS(
     outdir: distDir,
     outbase: srcDir,
     define: {
-      __appId: JSON.stringify(projectJSON.appid),
-      __version: JSON.stringify(packageJSON.version),
-      __apiRoot: JSON.stringify(API_ROOT),
+      __APP_ID__: JSON.stringify(projectJSON.appid),
+      __APP_VERSION__: JSON.stringify(packageJSON.version),
+      __APP_API_ROOT__: JSON.stringify(APP_API_ROOT),
+      __BUILD_TIME__: JSON.stringify(format(new Date(), 'yyyy-MM-dd HH:mm:ss')),
     },
   })
 }
@@ -56,7 +58,7 @@ export function buildTS(
 // Copy files w/o `.ts` extension
 export async function buildCopy(
   files: string[] = glob
-    .sync([`**/*`, `!**/*.ts`], {
+    .sync([`**/*`, `!**/*.ts`, '!**/*.wxml'], {
       cwd: srcDir,
     })
     .map(file => path.resolve(srcDir, file)),
@@ -73,13 +75,12 @@ export async function buildCopy(
 
 // Unocss
 export async function buildWxss() {
-  await execa('unocss', [
+  execa('unocss', [
     ...glob.sync([`**/*.wxml`], {
       cwd: srcDir,
       absolute: true,
     }),
-    `${srcDir}**/*.wxml`,
     '--out-file',
     path.resolve(distDir, 'unocss.wxss'),
-  ]).pipeStdout?.(process.stdout)
+  ]).stdout?.pipe(process.stdout)
 }

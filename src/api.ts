@@ -21,8 +21,8 @@ export async function api<T = any>({
 }) {
   return new Promise<T>((resolve, reject) => {
     const headers: Record<string, string> = {
-      appId: __appId,
-      version: __version,
+      appId: __APP_ID__,
+      version: __APP_VERSION__,
       source: 'miniprogram',
     }
     const token = wx.getStorageSync('TOKEN')
@@ -30,7 +30,7 @@ export async function api<T = any>({
       headers['Authorization'] = `Bearer ${token}`
     }
     const requestTask = wx.request<{ code: number; msg: string }>({
-      url: `${__apiRoot}/${url}`,
+      url: `${__APP_API_ROOT__}/${url}`,
       method,
       dataType: 'json',
       data,

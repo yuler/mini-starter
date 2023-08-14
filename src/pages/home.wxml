@@ -1,5 +1,5 @@
 <view class="page px-4">
-  <view class="block py-4">
+  <view class="block py-4 bg-#ff0 h-[200rpx]">
     <text>Example for `mp-icon` component</text>
   </view>
 

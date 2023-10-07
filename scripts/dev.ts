@@ -20,7 +20,7 @@ chokidar.watch('.env').on('change', () => {
 
 // Watch `.ts`
 chokidar
-  .watch('*.ts', {
+  .watch('**/*.ts', {
     cwd: srcDir,
   })
   .on('all', async (event, filepath) => {
@@ -32,7 +32,7 @@ chokidar
 
 // Watch `.wxss`
 chokidar
-  .watch('*.wxml', {
+  .watch('**/*.wxml', {
     cwd: srcDir,
   })
   .on('all', _ => {
@@ -43,7 +43,7 @@ chokidar
 chokidar
   .watch('.', {
     cwd: srcDir,
-    ignored: ['*.ts', '*.wxml'],
+    ignored: ['**/*.ts', '**/*.wxml'],
   })
   .on('all', (event, filepath) => {
     if (!['add', 'change'].includes(event)) return

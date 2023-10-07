@@ -9,8 +9,6 @@ import invariant from 'tiny-invariant'
 config()
 invariant(process.env.IDE_CLI, 'Please set `IDE_CLI`')
 invariant(process.env.APP_API_ROOT, 'Please set `APP_API_ROOT`')
-export const IDE_CLI = process.env.IDE_CLI
-export const APP_API_ROOT = process.env.APP_API_ROOT
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 export const root = path.resolve(__dirname, '..')

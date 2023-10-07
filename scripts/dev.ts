@@ -1,7 +1,6 @@
 import path from 'node:path'
-
+import { config } from 'dotenv'
 import chokidar from 'chokidar'
-import glob from 'fast-glob'
 import { projectJSON, root } from './constants'
 import { buildCopy, buildTS, buildWxss } from './build'
 import { execa } from 'execa'
@@ -11,38 +10,44 @@ const srcDir = path.resolve(root, projectJSON.srcMiniprogramRoot)
 // Build first, then watch
 execa('npm', ['run', 'build'], { cwd: root }).stdout?.pipe(process.stdout)
 
+// Watch `.env`, reload `dotenv`
+chokidar.watch('.env').on('change', () => {
+  config({
+    override: true,
+  })
+  buildTS()
+})
+
 // Watch `.ts`
 chokidar
-  .watch(
-    glob.sync([`**/*.ts`], {
-      cwd: srcDir,
-      absolute: true,
-    }),
-  )
-  .on('change', path => {
-    buildTS([path])
+  .watch('*.ts', {
+    cwd: srcDir,
+  })
+  .on('all', async (event, filepath) => {
+    if (!['add', 'change'].includes(event)) return
+
+    filepath = path.resolve(srcDir, filepath)
+    buildTS([filepath])
   })
 
 // Watch `.wxss`
 chokidar
-  .watch(
-    glob.sync([`**/*.wxml`], {
-      cwd: srcDir,
-      absolute: true,
-    }),
-  )
-  .on('change', _ => {
+  .watch('*.wxml', {
+    cwd: srcDir,
+  })
+  .on('all', _ => {
     buildWxss()
   })
 
 // Watch copy files
 chokidar
-  .watch(
-    glob.sync([`**/*`, `!**/*.ts`, '!**/*.wxml'], {
-      cwd: srcDir,
-      absolute: true,
-    }),
-  )
-  .on('change', path => {
-    buildCopy([path])
+  .watch('.', {
+    cwd: srcDir,
+    ignored: ['*.ts', '*.wxml'],
+  })
+  .on('all', (event, filepath) => {
+    if (!['add', 'change'].includes(event)) return
+
+    filepath = path.resolve(srcDir, filepath)
+    buildCopy([filepath])
   })

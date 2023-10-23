@@ -1,9 +1,9 @@
 import type { IApp } from '../app'
-import enchangePage from '../enchange-page'
+import enhancePage from '../enhance-page'
 
 const $app = getApp<IApp>()
 
-enchangePage({
+enhancePage({
   data: {
     time: new Date().toLocaleString(),
   },

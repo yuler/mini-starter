@@ -21,7 +21,7 @@ export interface IApp {
   $emit: typeof emitter.emit
 
   debug: boolean
-  gloablData: any
+  globalData: any
 }
 
 App<IApp>({
@@ -44,7 +44,7 @@ App<IApp>({
 
   // Global state & data
   debug: false,
-  gloablData: {},
+  globalData: {},
 
   onLaunch() {
     /**

@@ -1,0 +1,41 @@
+<view class="fixed inset-0" />
+<app-popup model:show="{{innerShow}}">
+  <view
+    class="weui-half-screen-dialog z-100000"
+    style="position: fixed; bottom:{{height}}px;"
+  >
+    <view class="weui-half-screen-dialog__hd">
+      <text class="weui-half-screen-dialog__title">{{title}}</text>
+    </view>
+    <view class="weui-half-screen-dialog__bd">
+      <view
+        class="weui-half-screen-dialog__tips"
+        style="color: blue"
+        bind:tap="openPrivacyContract"
+        >{{urlTitle}}</view
+      >
+      <view class="weui-half-screen-dialog__tips">{{desc2}}</view>
+    </view>
+    <view class="weui-half-screen-dialog__ft">
+      <view class="weui-half-screen-dialog__btn-area">
+        <button
+          id="disagree-btn"
+          type="default"
+          class="weui-btn"
+          bind:tap="handleDisagree"
+        >
+          不同意
+        </button>
+        <button
+          id="agree-btn"
+          type="primary"
+          open-type="agreePrivacyAuthorization"
+          class="weui-btn"
+          bind:agreeprivacyauthorization="handleAgree"
+        >
+          同意
+        </button>
+      </view>
+    </view>
+  </view>
+</app-popup>

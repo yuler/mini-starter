@@ -10,11 +10,20 @@ export interface IApp {
   $state: {
     retryLogin: number
     retryLoginMax: number
+    user?: {
+      avatar: string
+      nickname: string
+    }
   }
 
+  $showLoading: typeof $showLoading
+  $hideLoading: typeof $hideLoading
   $log: typeof $log
   $api: typeof $api
   $goto: typeof $goto
+  $toast: typeof $toast
+  $alert: typeof $alert
+  $confirm: typeof $confirm
 
   $events: typeof emitter.all
   $on: typeof emitter.on
@@ -33,9 +42,14 @@ App<IApp>({
   },
 
   // Helper functions
+  $showLoading,
+  $hideLoading,
   $log,
   $api,
   $goto,
+  $toast,
+  $alert,
+  $confirm,
 
   // Events
   $events: emitter.all,
@@ -67,6 +81,15 @@ App<IApp>({
   },
 })
 
+function $showLoading(options?: MP.ShowLoadingOption) {
+  wx.showLoading(Object.assign({ mask: true }, options))
+}
+function $hideLoading() {
+  wx.hideLoading({
+    noConflict: true,
+  })
+}
+
 /**
  * Wrap `console.log` with debug mode
  */
@@ -84,4 +107,66 @@ function $goto(url: string) {
     return
   }
   wx.navigateTo({ url })
+}
+
+/**
+ * Wrap for `wx.showToast`
+ * @param message The message to show
+ * @param duration @default 2000 The duration of the toast
+ */
+function $toast(message: string, duration = 2000) {
+  wx.showToast({
+    title: message,
+    icon: 'none',
+    duration,
+  })
+}
+
+/**
+ * Wrap fro `wx.showModal`
+ * @param message The message to display in the alert modal.
+ * @returns A promise that resolves with user confirmed or not.
+ */
+function $alert(message: string): Promise<boolean> {
+  return new Promise((resolve, reject) => {
+    wx.showModal({
+      title: '提示',
+      content: message,
+      showCancel: false,
+      success(result) {
+        if (result.confirm) {
+          resolve(true)
+        } else {
+          resolve(false)
+        }
+      },
+      fail(error) {
+        reject(error)
+      },
+    })
+  })
+}
+
+/**
+ * Wrap for `wx.showModal` to display a confirmation dialog.
+ * @param message The message to display in the confirmation dialog.
+ * @returns A promise that resolves with user confirmed or not.
+ */
+function $confirm(message: string): Promise<boolean> {
+  return new Promise((resolve, reject) => {
+    wx.showModal({
+      title: '提示',
+      content: message,
+      success(result) {
+        if (result.confirm) {
+          resolve(true)
+        } else {
+          resolve(false)
+        }
+      },
+      fail(error) {
+        reject(error)
+      },
+    })
+  })
 }

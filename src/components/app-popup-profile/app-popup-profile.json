@@ -1,0 +1,6 @@
+{
+  "components": true,
+  "usingComponents": {
+    "app-popup-privacy": "../app-popup-privacy/app-popup-privacy"
+  }
+}

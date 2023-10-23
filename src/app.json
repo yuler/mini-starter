@@ -13,5 +13,6 @@
   },
   "usingComponents": {
     "app-icon": "/components/app-icon/app-icon"
-  }
+  },
+  "__usePrivacyCheck__": true
 }

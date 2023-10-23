@@ -1,0 +1,38 @@
+<app-popup model:show="{{show}}" title="个人信息">
+  <view class="border-t py-4 flex justify-between items-center">
+    <view class="text-lg">头像</view>
+    <button
+      class="m-0 block bg-transparent"
+      style="width: 120rpx; height: 120rpx; padding: 0"
+      type="default"
+      size="mini"
+      open-type="chooseAvatar"
+      bind:chooseavatar="onChooseAvatar"
+    >
+      <image
+        class="w-15 h-15 rounded-md block"
+        src="{{ avatar || 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0'}}"
+      />
+    </button>
+  </view>
+
+  <view class="border-t py-4 flex justify-between items-center">
+    <view class="text-lg">姓名</view>
+    <input
+      class="flex-1 text-right"
+      type="nickname"
+      value="{{nickname}}"
+      placeholder="请输入昵称"
+      bind:input="onInputNickname"
+      bind:confirm="onInputNickname"
+      bind:blur="onInputNickname"
+      bind:nicknamereview="onNicknameReview"
+    />
+  </view>
+
+  <view class="flex justify-center mt-8">
+    <button type="primary" bind:tap="onSubmit">保存</button>
+  </view>
+</app-popup>
+
+<app-popup-privacy />

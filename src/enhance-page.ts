@@ -27,6 +27,7 @@ export default function enchangePage<
   T extends MP.Page.DataOption,
   U extends MP.Page.CustomOption,
 >(options: MPPageOptions<T, U>) {
+  let onLoadComplete = false
   // Intercept `onLoad`
   const originOnLoad = options.onLoad
   const onLoad: MP.Page.ILifetime['onLoad'] = async function (
@@ -34,8 +35,7 @@ export default function enchangePage<
     query,
   ) {
     const $app = getApp<IApp>()
-    $app.$log('enchangePage => onLoad', { query })
-
+    $app.$log('enhancePage', '#onLoad', { query })
     // TODO: Login by wx.login
     // if (!wx.getStorageSync('TOKEN')) {
     //   await (async function loginWithRetry() {
@@ -64,8 +64,26 @@ export default function enchangePage<
     //     }
     //   })()
     // }
+    await originOnLoad?.call(this, query)
+    onLoadComplete = true
+    $app.$log('enhancePage', '#onLoad complete')
 
-    originOnLoad?.call(this, query)
+    // Intercept `onShow`, wait for `onLoad` to complete
+    const originOnShow = options.onShow
+    const onShow: MP.Page.ILifetime['onShow'] = async function (this: any) {
+      // polling until `onLoad` complete
+      if (!onLoadComplete) {
+        setTimeout(() => {
+          onShow()
+        }, 100)
+        return
+      }
+      const $app = getApp<IApp>()
+
+      $app.$log('enhancePage', '#onShow')
+      await originOnShow?.call(this)
+      $app.$log('enhancePage', '#onShow complete')
+    }
   }
 
   options = {

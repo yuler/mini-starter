@@ -1,0 +1,45 @@
+<view class="relative">
+  <input
+    type="search"
+    placeholder="{{placeholder}}"
+    value="{{value}}"
+    bind:input="onInput"
+    bind:focus="onFocus"
+    bind:blur="onBlur"
+  />
+
+  <view
+    wx:if="{{optionVisible && options.length}}"
+    class="z-1000 absolute left-0 bg-white w-full border-1rpx border-solid border-#e8e8e8"
+  >
+    <view
+      wx:for="{{options}}"
+      wx:for-item="option"
+      wx:key="label"
+      class="p-2 text-center text-sm border-0 border-b-1rpx border-solid border-#e8e8e8"
+      bind:tap="onSelect"
+      data-option="{{option}}"
+    >
+      {{option.label}}
+    </view>
+  </view>
+</view>
+
+<!-- <view wx:if="{{visible}}">
+  <view
+    class="z-100 animate-ease animate-duration-300 fixed inset-0 {{ show ? 'animate-fade-in' : 'animate-fade-out'}}"
+    style="background: rgba(0, 0, 0, 0.5)"
+    bind:tap="onClose"
+  />
+  <view
+    class="z-101 min-h-50 max-h-100 animate-ease animate-duration-300 fixed inset-x-0 bottom-0 rounded-t-lg bg-white p-4 pb-10 {{ show ? 'animate-slide-in-up' : 'animate-slide-out-down'}}"
+  >
+    <view class="min-h-10 relative flex items-center justify-center pb-4">
+      <view wx:if="{{title}}" class="text-lg font-bold">{{title}}</view>
+      <view class="p-2 absolute -right-2" bind:tap="onClose">
+        <app-icon name="x" />
+      </view>
+    </view>
+    <slot />
+  </view>
+</view> -->

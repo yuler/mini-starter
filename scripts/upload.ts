@@ -5,8 +5,6 @@ import ci from 'miniprogram-ci'
 
 import { packageJSON, projectJSON, root } from './constants'
 
-// Paths
-
 // Upload miniporgram
 const project = new ci.Project({
   appid: projectJSON.appid,

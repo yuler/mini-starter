@@ -1,0 +1,63 @@
+name: Miniprogram Upload
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Check `MINIPROGRAM_PRIVATE_KEY` secret
+        shell: bash
+        env:
+          MINIPROGRAM_PRIVATE_KEY: ${{ secrets.MINIPROGRAM_PRIVATE_KEY }}
+          MINIPROGRAM_APP_ID: ${{ secrets.MINIPROGRAM_APP_ID }}
+        run: |
+          if [[ -z $MINIPROGRAM_PRIVATE_KEY ]]; then
+            echo "##########"
+            echo ""
+            echo "Please set 'MINIPROGRAM_PRIVATE_KEY' key in actions secrets"
+            echo ""
+            echo "##########"
+            exit 1
+          else
+            echo "$MINIPROGRAM_PRIVATE_KEY" > private.$MINIPROGRAM_APP_ID.key
+          fi
+
+      - name: Use Node.js 18
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Run mini:upload
+        id: upload
+        env:
+          APP_API_ROOT: ${{ secrets.APP_API_ROOT }}
+        run: |
+          corepack enable
+          pnpm install
+          pnpm build
+          pnpm upload
+
+      - name: Comment upload result
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const fs = require('fs')
+            const result = fs.readFileSync('upload-result.json')
+            const body = '🚀  Upload Result:\n```js\n' + result + '\n```'
+            github.rest.repos.createCommitComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              commit_sha: context.sha,
+              body,
+            })

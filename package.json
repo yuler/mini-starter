@@ -11,7 +11,9 @@
     "format": "prettier -w \"**/*.{ts,js,wxml,wxss,wxs,json,md}\"",
     "ide:open": "tsx scripts/ide-cli.ts open",
     "ide:preview": "tsx scripts/ide-cli.ts preview",
-    "ide:npm": "tsx scripts/ide-cli.ts build-npm"
+    "ide:npm": "tsx scripts/ide-cli.ts build-npm",
+    "create:page": "tsx scripts/create-page.ts",
+    "create:component": "tsx scripts/create-component.ts"
   },
   "dependencies": {
     "mitt": "^3.0.1"

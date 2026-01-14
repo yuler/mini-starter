@@ -1,1 +1,1 @@
-export const TABS = ['/pages/home']
+export const TABS = __TABS__

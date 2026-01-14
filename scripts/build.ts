@@ -7,7 +7,7 @@ import ci from 'miniprogram-ci'
 import esbuild from 'esbuild'
 import { format } from 'date-fns'
 
-import { packageJSON, projectJSON, root } from './constants'
+import { packageJSON, projectJSON, appJSON, root } from './constants'
 import { exists } from './utils'
 
 const srcDir = path.resolve(root, projectJSON.srcMiniprogramRoot)
@@ -51,6 +51,9 @@ export function buildTS(
       __APP_VERSION__: JSON.stringify(packageJSON.version),
       __APP_API_ROOT__: JSON.stringify(process.env.APP_API_ROOT),
       __BUILD_TIME__: JSON.stringify(format(new Date(), 'yyyy-MM-dd HH:mm:ss')),
+      __TABS__: JSON.stringify(
+        appJSON.tabBar?.list?.map((tab: any) => tab.pagePath) ?? [],
+      ),
     },
   })
 }

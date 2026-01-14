@@ -6,3 +6,4 @@ declare const __APP_ID__: string
 declare const __APP_VERSION__: string
 declare const __APP_API_ROOT__: string
 declare const __BUILD_TIME__: string
+declare const __TABS__: string[]

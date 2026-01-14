@@ -19,3 +19,6 @@ export const packageJSON: Record<string, any> = JSON.parse(
 export const projectJSON: Record<string, any> = JSON.parse(
   await fs.readFile(path.resolve(root, 'project.config.json'), 'utf-8'),
 )
+export const appJSON: Record<string, any> = JSON.parse(
+  await fs.readFile(path.resolve(root, 'src/app.json'), 'utf-8'),
+)

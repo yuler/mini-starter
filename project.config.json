@@ -5,7 +5,7 @@
   "appid": "wxda5fb4f5808e2104",
   "miniprogramRoot": "dist/",
   "srcMiniprogramRoot": "src/",
-  "libVersion": "2.30.0",
+  "libVersion": "3.13.2",
   "compileType": "miniprogram",
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},

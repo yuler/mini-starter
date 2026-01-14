@@ -27,6 +27,8 @@ cp .env.example .env
 - `build` compile the source code to the `dist` directory
 - `dev` run with watch mode for development
 - `upload` upload the code via [miniprogram-ci](https://www.npmjs.com/package/miniprogram-ci)
+- `create:page` Quick create a page
+- `create:component` Quick create a component
 
 ## Related
 

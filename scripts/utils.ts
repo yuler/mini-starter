@@ -11,3 +11,17 @@ export async function exists(path: string): Promise<boolean> {
   }
   return true
 }
+
+/**
+ * Ask user a question via command line input.
+ */
+export async function ask(question: string): Promise<string> {
+  const readline = await import('node:readline/promises')
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+  })
+  const answer = (await rl.question(question)).trim()
+  rl.close()
+  return answer
+}

@@ -12,6 +12,7 @@ invariant(process.env.APP_API_ROOT, 'Please set `APP_API_ROOT`')
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 export const root = path.resolve(__dirname, '..')
+export const srcPath = path.resolve(root, 'src')
 
 export const packageJSON: Record<string, any> = JSON.parse(
   await fs.readFile(path.resolve(root, 'package.json'), 'utf-8'),

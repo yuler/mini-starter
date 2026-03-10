@@ -79,7 +79,7 @@ export default function enhancePage<
     // polling until `onLoad` complete
     if (!onLoadComplete) {
       setTimeout(() => {
-        onShow()
+        onShow.call(this)
       }, 100)
       return
     }
